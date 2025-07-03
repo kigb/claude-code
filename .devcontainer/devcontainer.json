@@ -17,6 +17,7 @@
       "onAutoForward": "notify"
     }
   },
+  "overrideCommand": true,
   "customizations": {
     "vscode": {
       "extensions": [
@@ -55,5 +56,6 @@
   },
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=delegated",
   "workspaceFolder": "/workspace",
-  "postCreateCommand": "/usr/local/bin/init-firewall.sh"
+  "postCreateCommand": "/usr/local/bin/init-firewall.sh",
+  "postStartCommand": "npm start &"
 }

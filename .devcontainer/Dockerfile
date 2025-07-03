@@ -62,9 +62,18 @@ RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/
   -a "export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhistory/.bash_history" \
   -x
 
-# Install Claude
+# Install Claude Code globally
 RUN npm install -g @anthropic-ai/claude-code
 
 # Copy and set up firewall script
 COPY init-firewall.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/init-firewall.sh
+
+# Copy project files
+COPY package.json server.js ./
+
+# Install project dependencies
+RUN npm install
+
+# Set the default command to start the HTTP server
+CMD ["npm", "start"]
